@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Login</title>
+<style>body{font-family:Arial,sans-serif;background:#f5f7fb;display:grid;place-items:center;min-height:90vh;color:#202938}.card{background:white;padding:28px;border-radius:12px;width:min(360px,85vw);box-shadow:0 2px 12px #0001}input,button{box-sizing:border-box;width:100%;padding:11px;margin:8px 0;border:1px solid #ccd2dd;border-radius:7px}button{background:#2457c5;color:white;border:0;cursor:pointer}.error{color:#b42318}</style></head>
+<body><main class="card"><h1>Blog Login</h1>
+<% if (error) { %><p class="error"><%= error %></p><% } %>
+<form method="POST" action="/login">
+<label>Email</label><input type="email" name="email" required>
+<label>Password</label><input type="password" name="password" required>
+<button type="submit">Login</button>
+</form><p><a href="/posts">View published posts</a></p></main></body></html>

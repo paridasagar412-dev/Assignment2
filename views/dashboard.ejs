@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dashboard</title>
+<style>body{font-family:Arial,sans-serif;max-width:900px;margin:35px auto;padding:0 18px;background:#f5f7fb;color:#202938}.post{background:white;padding:18px;margin:14px 0;border-radius:10px}img{max-width:100%;max-height:220px;border-radius:8px}.muted{color:#687386}button{padding:9px 14px;background:#2457c5;color:white;border:0;border-radius:6px;cursor:pointer}</style></head>
+<body><h1>Dashboard</h1><p>Welcome, <strong><%= user.name %></strong> · Role: <%= user.role %></p>
+<p><a href="/posts">Published posts</a></p>
+<form method="POST" action="/logout"><button type="submit">Logout</button></form>
+<h2><%= user.role === "admin" ? "All posts" : "Your posts" %></h2>
+<% if (posts.length === 0) { %><p>No posts yet. Use the API to create one.</p><% } %>
+<% posts.forEach(post => { %><article class="post">
+<h3><%= post.title %></h3>
+<% if (post.author && user.role === "admin") { %><p class="muted">Author: <%= post.author.name %></p><% } %>
+<% if (post.image) { %><img src="<%= post.image %>" alt="Featured image"><% } %>
+<p><%= post.content %></p><p class="muted">Status: <%= post.published ? "Published" : "Draft" %></p>
+<p><small>API ID: <%= post._id %></small></p>
+</article><% }) %>
+<p class="muted">Create, edit and delete posts using the protected /api/posts endpoints (Postman or curl).</p>
+</body></html>
